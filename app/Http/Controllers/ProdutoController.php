@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Exemplo;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
-class ExemploController extends Controller
+class ProdutoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $exemplos = Exemplo::all();
-        return response()->json($exemplos);
+        $produtos = Produto::all();
+        return response()->json($produtos);
     }
 
     /**
@@ -30,9 +30,9 @@ class ExemploController extends Controller
     public function store(Request $request)
     {
 
-        $exemplo = new Exemplo($request->all());
-        $exemplo->save();
-        return response()->json($exemplo, 201);
+        $produto = new Produto($request->all());
+        $produto->save();
+        return response()->json($produto, 201);
 
     }
 
@@ -41,11 +41,11 @@ class ExemploController extends Controller
      */
     public function show(int $id)
     {
-        $exemplo = Exemplo::find($id);
-        if (!$exemplo) {
-            return response()->json(['mensagem' => 'Exemplo não encontrado'], 404);
+        $produto = Produto::find($id);
+        if (!$produto) {
+            return response()->json(['mensagem' => 'Produto não encontrado'], 404);
         }
-        return response()->json($exemplo);
+        return response()->json($produto);
     }
 
     /**
@@ -61,15 +61,15 @@ class ExemploController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $exemplo = Exemplo::find($id);
-        if (!$exemplo) {
-            return response()->json(['mensagem' => 'Exemplo não encontrado'], 404);
+        $produto = Produto::find($id);
+        if (!$produto) {
+            return response()->json(['mensagem' => 'Produto não encontrado'], 404);
         }
 
-        $exemplo->fill($request->all());
-        $exemplo->save();
+        $produto->fill($request->all());
+        $produto->save();
 
-        return response()->json($exemplo);
+        return response()->json($produto);
     }
 
     /**
@@ -77,7 +77,7 @@ class ExemploController extends Controller
      */
     public function destroy(int $id)
     {
-        Exemplo::find($id)->delete();
+        Produto::find($id)->delete();
 
         return response()->noContent();
     }
