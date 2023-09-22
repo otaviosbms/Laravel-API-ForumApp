@@ -66,8 +66,7 @@ class ProdutoController extends Controller
             return response()->json(['mensagem' => 'Produto não encontrado'], 404);
         }
 
-        $produto->fill($request->all());
-        $produto->save();
+        $produto->update($request->toArray());
 
         return response()->json($produto);
     }
